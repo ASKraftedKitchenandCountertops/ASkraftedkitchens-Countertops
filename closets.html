@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Closets | AS Krafted Kitchens & Countertops</title>
+  <meta name="description" content="Browse our custom closet organizer gallery. AS Krafted Kitchens & Countertops, Brampton Ontario." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --gold: #c9a84c; --gold-light: #e4c46e; --black: #0a0a0a; --dark: #111111; --dark2: #1a1a1a; --white: #f5f2ed; --gray: #888; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'Rajdhani', sans-serif; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; opacity: 0.35; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 18px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,10,0.97); border-bottom: 1px solid rgba(201,168,76,0.15); backdrop-filter: blur(8px); }
+    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-logo img { width: 56px; height: 56px; object-fit: contain; border-radius: 8px; }
+    .nav-brand strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; color: var(--gold); letter-spacing: 0.04em; }
+    .nav-brand span { font-size: 0.65rem; letter-spacing: 0.22em; color: var(--gray); text-transform: uppercase; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--white); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; transition: color 0.25s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+    .nav-links a:hover { color: var(--gold); } .nav-links a:hover::after, .nav-links a.active::after { width: 100%; } .nav-links a.active { color: var(--gold); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { width: 26px; height: 2px; background: var(--white); }
+    .page-hero { padding: 140px 48px 60px; background: var(--dark); position: relative; text-align: center; border-bottom: 1px solid rgba(201,168,76,0.15); }
+    .page-hero::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .page-hero .eyebrow { font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; line-height: 1.1; }
+    .page-hero h1 em { font-style: italic; color: var(--gold); }
+    .page-hero p { color: var(--gray); font-size: 0.95rem; margin-top: 16px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .gallery-section { padding: 80px 48px; }
+    .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 1400px; margin: 0 auto; }
+    .photo-grid img { width: 100%; height: 320px; object-fit: cover; display: block; transition: transform 0.4s, filter 0.4s; filter: brightness(0.88) saturate(0.9); cursor: pointer; }
+    .photo-grid img:hover { transform: scale(1.02); filter: brightness(1) saturate(1.1); }
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9000; align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border: 1px solid rgba(201,168,76,0.2); }
+    .lightbox-close { position: absolute; top: 24px; right: 32px; color: var(--gold); font-size: 2.5rem; cursor: pointer; font-family: serif; line-height: 1; }
+    .lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: var(--gold); font-size: 1.8rem; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .lightbox-prev { left: 20px; } .lightbox-next { right: 20px; }
+    .other-pages { background: var(--dark); padding: 60px 48px; border-top: 1px solid rgba(201,168,76,0.15); }
+    .other-pages h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 24px; text-align: center; }
+    .pages-grid { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .page-link { background: var(--dark2); border: 1px solid rgba(201,168,76,0.2); color: var(--white); text-decoration: none; padding: 14px 28px; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; transition: all 0.25s; }
+    .page-link:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+    .page-link.current { background: var(--gold); color: var(--black); border-color: var(--gold); }
+    footer { background: #060606; border-top: 1px solid rgba(201,168,76,0.15); padding: 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+    .footer-brand { display: flex; align-items: center; gap: 14px; }
+    .footer-brand img { width: 48px; height: 48px; object-fit: contain; }
+    .footer-brand-text strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--gold); }
+    .footer-brand-text span { font-size: 0.65rem; letter-spacing: 0.18em; color: var(--gray); }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { color: var(--gray); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 0.75rem; color: var(--gray); text-align: right; }
+    .footer-copy a { color: var(--gold); text-decoration: none; }
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; } .gallery-section { padding: 60px 24px; } .page-hero { padding: 120px 24px 48px; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(10,10,10,0.98); padding: 24px; gap: 20px; }
+      .nav-links.open { display: flex; } .hamburger { display: flex; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); } footer { flex-direction: column; align-items: flex-start; } .footer-copy { text-align: left; }
+      .other-pages { padding: 48px 24px; } .lightbox-prev { left: 8px; } .lightbox-next { right: 8px; }
+    }
+    @media (max-width: 480px) { .photo-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <span class="lightbox-close" onclick="closeLightboxBtn()">&times;</span>
+  <div class="lightbox-prev" onclick="lightboxNav(-1)">&#8249;</div>
+  <img id="lightbox-img" src="" alt="" />
+  <div class="lightbox-next" onclick="lightboxNav(1)">&#8250;</div>
+</div>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.jpeg" alt="AS Krafted Kitchens Logo">
+    <div class="nav-brand"><strong>AS Krafted Kitchens</strong><span>& Countertops</span></div>
+  </a>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="kitchens.html">Custom Kitchens</a></li>
+    <li><a href="countertops.html">Alluring Countertops</a></li>
+    <li><a href="closets.html" class="active">Closets</a></li>
+    <li><a href="bathrooms.html">Bath Renovation</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+<div class="page-hero">
+  <p class="eyebrow">Our Portfolio</p>
+  <h1>Custom <em>Closets</em></h1>
+  <p>Walk-in closet systems designed for maximum storage and visual appeal. Every detail crafted for you.</p>
+</div>
+<div class="gallery-section">
+  <div class="photo-grid" id="photo-grid">
+    <img src="closet1.jpeg" alt="Closet 1" onclick="openLightbox(this)" />
+    <img src="closet2.jpeg" alt="Closet 2" onclick="openLightbox(this)" />
+    <img src="closet3.jpeg" alt="Closet 3" onclick="openLightbox(this)" />
+    <img src="closet4.jpeg" alt="Closet 4" onclick="openLightbox(this)" />
+  </div>
+</div>
+<div class="other-pages">
+  <h3>Explore More</h3>
+  <div class="pages-grid">
+    <a href="kitchens.html" class="page-link">Custom Kitchens</a>
+    <a href="countertops.html" class="page-link">Alluring Countertops</a>
+    <a href="closets.html" class="page-link current">Closets</a>
+    <a href="bathrooms.html" class="page-link">Bath Renovation</a>
+    <a href="index.html#contact" class="page-link">Get a Free Quote</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-brand">
+    <img src="logo.jpeg" alt="Logo">
+    <div class="footer-brand-text"><strong>AS Krafted Kitchens & Countertops</strong><span>Custom Kitchens. Crafted to Perfection.</span></div>
+  </div>
+  <div class="footer-links">
+    <a href="kitchens.html">Custom Kitchens</a><a href="countertops.html">Countertops</a><a href="closets.html">Closets</a><a href="bathrooms.html">Bath Renovation</a><a href="index.html#contact">Contact</a>
+  </div>
+  <div class="footer-copy"><p>&#169; 2026 AS Krafted Kitchens & Countertops. All rights reserved.</p><p style="margin-top:4px;">Brampton, Ontario &middot; <a href="tel:4372592023">437 259-2023</a></p></div>
+</footer>
+<script>
+  function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+  var imgs=[], idx=0;
+  function openLightbox(img){imgs=Array.from(document.getElementById('photo-grid').querySelectorAll('img'));idx=imgs.indexOf(img);document.getElementById('lightbox-img').src=img.src;document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}
+  function closeLightbox(e){if(e.target===document.getElementById('lightbox'))closeLightboxBtn();}
+  function closeLightboxBtn(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+  function lightboxNav(d){idx=(idx+d+imgs.length)%imgs.length;document.getElementById('lightbox-img').src=imgs[idx].src;}
+  document.addEventListener('keydown',function(e){if(!document.getElementById('lightbox').classList.contains('open'))return;if(e.key==='ArrowRight')lightboxNav(1);if(e.key==='ArrowLeft')lightboxNav(-1);if(e.key==='Escape')closeLightboxBtn();});
+</script>
+</body>
+</html>
